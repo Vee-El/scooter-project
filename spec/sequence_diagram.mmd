@@ -1,0 +1,37 @@
+sequenceDiagram
+
+%% @backgroundColor(#f0f4f4)
+
+    actor User
+    participant ScooterApp
+    participant Scooter
+    
+    User -->> Scooter: Rent
+    activate Scooter
+    User ->> ScooterApp: Check scooter app
+    ScooterApp -->> User: Ask user to login or register
+
+    opt register as new user
+        User ->> ScooterApp: Register details to set up account
+        ScooterApp ->> User: User has been registered logged in
+    end
+
+    alt user enters login details
+        User ->> ScooterApp: Enter username and password
+        ScooterApp -->> User: Incorrect password error      
+    else successful login 
+        ScooterApp ->> User: Login successful
+        
+    end
+    
+    ScooterApp ->> Scooter: Check scooter status
+    deactivate Scooter
+
+    alt scooter reports current status as
+        Scooter ->> ScooterApp: Unavailable
+        ScooterApp ->> User: No availability
+    else scooter available
+        Scooter -->> ScooterApp: Available scooter
+        ScooterApp ->> Scooter: Registers scooter to User
+        Scooter ->> User: Releases scooter
+    end

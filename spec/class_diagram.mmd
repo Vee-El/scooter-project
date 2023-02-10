@@ -1,0 +1,37 @@
+classDiagram
+
+    ScooterApp --* User
+    Scooter --o User
+    
+    class Scooter {
+        + string station
+        + null or string user
+        + number serial
+        + number nextSerial
+        + number charge
+        + boolean isBroken
+        + rent()
+        + dock(station)
+        + recharge()
+        + requestRepair()
+    }
+
+    class User {        
+        + string username
+        + string password
+        + number age
+        + boolean loggeIn
+        + login(password)
+        + logout()   
+    }
+
+    class ScooterApp {
+        + string station
+        + object registeredUsers
+        + loginUser(username, password)
+        + logoutUser(username)
+        + createScooter(station)
+        + dockScooter(scooter, station)
+        + rentScooter(scooter, user)
+        + print()
+    }
