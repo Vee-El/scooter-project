@@ -4,6 +4,10 @@ const ScooterApp = require('../src/ScooterApp')
 
 // ScooterApp tests here
 
+describe('ScooterApp class integrity checks', () => {
+   
+    test('instance has each property', () => {      
+
 // register user
 
 // log in
@@ -13,3 +17,7 @@ const ScooterApp = require('../src/ScooterApp')
 // rent scooter
 
 // dock scooter
+
+    });
+
+});
