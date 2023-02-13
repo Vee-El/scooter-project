@@ -16,6 +16,7 @@ describe('scooter class integrity checks', () => {
     expect(scooter1.station).toBe('Buchanan Street');
   });
 
+  // // Only works if other code blocked out.
   // test('instance static value incrementing', () => {
   //   const scooter2 = new Scooter('Kelvinhall');
   //   expect(scooter2.serial).toBe(scooter1.serial + 1);
@@ -31,27 +32,32 @@ describe('scooter methods', () => {
   
 
   //rent method
-  const scooter3 = new Scooter('St Enoch');
-  test('rent method', () => {
-    rent(), scooter3;
 
+  test('rent method', () => {
+    const newUser1 = new User('Willow', 'M@g1c', 28);
+    const scooter3 = new Scooter('St Enoch');
     // If the Scooter is charged above 20%
     expect(scooter3.charge).toBeGreaterThan(20);
-    // and not broken,
+    // and not broken
     expect(scooter3.isBroken).toBe(false);
-    //remove it from its station
+    //remove it from its station - returns 'St Enoch'
     expect(scooter3.station).toBe(null);
-    // check it out to user.
-    expect(scooter3.user).toHaveProperty(!null);
+    // check it out to user - returns 'null'
+    expect(scooter3.user).toBe(newUser1.username);
+
   });
 
   // check method will throw an error if charge is below 20% or is broken
-  const scooter4 = new Scooter('Hillhead');
   test('rent method with error', () => {
+  const newUser2 = new User('Angel', '$un$et1', 377);
+  const scooter4 = new Scooter('Hillhead');
+  scooter4.charge = 4;  
     // charge is below 20% 
-    expect( () => (Scooter4.charge <= 20)).toThrowErr('scooter needs to charge');
+    expect(() => (scooter4.rent(newUser2))).toThrow('scooter needs to charge');
     // scooter is broken
-    expect(scooter4.isBroken = true).toThrowErr('scooter needs repair');
+    const scooter5 = new Scooter('Kelvin Bridge');
+    scooter5.isBroken = true;
+    expect(() => (scooter5.rent(newUser2))).toThrow('scooter needs repair');
 
   });
 
@@ -61,4 +67,4 @@ describe('scooter methods', () => {
 
   //charge method
 
-})
+});
